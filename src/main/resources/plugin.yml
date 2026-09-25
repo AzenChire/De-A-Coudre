@@ -1,0 +1,17 @@
+name: DeACoudre
+version: '${version}'
+main: fr.fixemy.deacoudre.DeACoudrePlugin
+api-version: '26.3'
+description: '${description}'
+authors: [fixemy]
+# The /dac command (alias /deacoudre) is registered in code through Paper's
+# Brigadier command API (JavaPlugin#registerCommand), so no "commands" section.
+permissions:
+  deacoudre.play:
+    description: Join, leave and list the Dé à Coudre arenas, choose a block.
+    default: true
+  deacoudre.admin:
+    description: Create, configure and manage the Dé à Coudre arenas.
+    default: op
+    children:
+      deacoudre.play: true

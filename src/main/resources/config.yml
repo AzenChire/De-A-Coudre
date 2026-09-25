@@ -1,0 +1,189 @@
+# ============================================================
+#  DeACoudre - main configuration
+#  /dac reload reloads this file and messages.yml.
+#  Values are read when they are needed: a running game uses
+#  the new values from the next turn on.
+# ============================================================
+
+# Language used to create messages.yml and to fill the keys missing from it.
+# Bundled: en, fr (see plugins/DeACoudre/lang/). To switch an existing server,
+# change this value, delete messages.yml and run /dac reload (or restart).
+language: en
+
+game:
+  # Default number of players (can be overridden per arena with /dac setplayers).
+  min-players: 2
+  max-players: 12
+
+  # Countdown (seconds) once the minimum number of players is reached.
+  starting-countdown: 10
+  # Shorter countdown when the arena is full (0 = disabled).
+  full-countdown: 5
+  # Seconds announced in the chat.
+  countdown-chat-seconds: [60, 30, 10, 5]
+  # Seconds shown as a title (with a sound, see sounds.countdown).
+  countdown-title-seconds: [5, 4, 3, 2, 1]
+
+  # Time (seconds) a player has to jump.
+  turn-duration: 15
+  # Extra time (seconds) given to a player who is already falling when their time is up.
+  fall-grace: 5
+  # Time (ticks) the jumper is frozen on the platform at the start of their turn.
+  turn-freeze-ticks: 10
+  # Delay (ticks) between two turns.
+  turn-delay-ticks: 30
+  # Duration (seconds) of the end screen before everything is restored.
+  ending-duration: 8
+
+  # true  : the inventory is saved, cleared during the game, then restored.
+  # false : the inventory is never touched (it stays protected during the game,
+  #         and the lobby item of the block selector is not given).
+  restore-inventory: true
+
+  sounds: true
+  fireworks: true
+
+  # How blocks are given to players who did not choose one:
+  # RANDOM (shuffled every game) or ORDERED (order of block-selector.materials).
+  color-assignment: RANDOM
+
+  # Margin (blocks) around the pool and the platform: a jumper leaving it misses the jump.
+  jump-zone-margin: 4
+
+  # Lives of each player at the start of a game. A missed jump costs one life, 0 = eliminated.
+  starting-lives: 1
+  # Maximum lives (1 to 10). A successful jump into a 1x1 water hole (a "Dé à Coudre":
+  # the 4 cells north/south/east/west already filled, diagonals ignored) gives +1 life.
+  max-lives: 3
+
+block-selector:
+  # Lets players choose their block in the lobby (menu + /dac block).
+  # When disabled, blocks are given automatically as before.
+  enabled: true
+  # true: two players of the same game can never use the same block.
+  # An arena whose max players is higher than the number of blocks cannot be enabled.
+  unique-blocks: true
+  # Hotbar item opening the menu in the lobby (/dac block always works).
+  lobby-item: true
+  lobby-item-material: NETHER_STAR
+  # Hotbar slot of the item (0 to 8).
+  lobby-item-slot: 4
+  # Whitelist of blocks players can use (54 max). Only full solid blocks without
+  # gravity, inventory or special behaviour are accepted; invalid entries are
+  # skipped with a warning in the console.
+  materials:
+    - WHITE_CONCRETE
+    - ORANGE_CONCRETE
+    - MAGENTA_CONCRETE
+    - LIGHT_BLUE_CONCRETE
+    - YELLOW_CONCRETE
+    - LIME_CONCRETE
+    - PINK_CONCRETE
+    - GRAY_CONCRETE
+    - LIGHT_GRAY_CONCRETE
+    - CYAN_CONCRETE
+    - PURPLE_CONCRETE
+    - BLUE_CONCRETE
+    - BROWN_CONCRETE
+    - GREEN_CONCRETE
+    - RED_CONCRETE
+    - BLACK_CONCRETE
+
+# Boss bar showing the remaining time of the current turn to the players of the arena.
+# Disabled by default: the action bar already shows this time.
+turn-bossbar:
+  enabled: false
+  # PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
+  color: YELLOW
+  # PROGRESS, NOTCHED_6, NOTCHED_10, NOTCHED_12, NOTCHED_20
+  overlay: PROGRESS
+
+pool:
+  # Maximum size of a pool (pos1/pos2 selection).
+  max-width: 64
+  max-length: 64
+  max-depth: 32
+
+scoreboard:
+  enabled: true
+  server-name: "play.example.com"
+
+protection:
+  # Blocks the commands of participants (except allowed-commands and deacoudre.admin).
+  block-commands: false
+  allowed-commands:
+    - dac
+    - deacoudre
+    - msg
+    - tell
+    - r
+  # Maximum distance (blocks) from the lobby / spectator point before being brought back.
+  max-distance: 40
+  # A participant teleported by another plugin or a command:
+  #   CANCEL : the teleport is cancelled.
+  #   LEAVE  : the teleport happens and the player leaves the game.
+  external-teleport: CANCEL
+
+# Sounds (Minecraft 26.3 keys, e.g. minecraft:entity.player.levelup).
+# enabled: false disables one sound. pitch-by-second (countdown) sets the pitch
+# for each second of the countdown.
+sounds:
+  join:
+    sound: "minecraft:entity.experience_orb.pickup"
+    volume: 1.0
+    pitch: 1.2
+  countdown:
+    sound: "minecraft:block.note_block.pling"
+    volume: 1.0
+    pitch: 1.0
+    pitch-by-second:
+      5: 0.8
+      4: 0.9
+      3: 1.0
+      2: 1.2
+      1: 1.4
+  start:
+    sound: "minecraft:entity.player.levelup"
+    volume: 1.0
+    pitch: 1.0
+  turn:
+    sound: "minecraft:block.note_block.bell"
+    volume: 1.0
+    pitch: 1.0
+  tick:
+    sound: "minecraft:block.note_block.hat"
+    volume: 1.0
+    pitch: 1.5
+  success:
+    sound: "minecraft:entity.experience_orb.pickup"
+    volume: 1.0
+    pitch: 0.8
+  # Personal sound of a "Dé à Coudre" (1x1 hole), heard by the jumper only.
+  perfect_jump:
+    sound: "minecraft:entity.player.levelup"
+    volume: 1.0
+    pitch: 1.3
+  # Personal sound when a block is chosen in the selector.
+  block_select:
+    sound: "minecraft:ui.button.click"
+    volume: 0.8
+    pitch: 1.2
+  life_lost:
+    sound: "minecraft:block.note_block.bass"
+    volume: 1.0
+    pitch: 0.7
+  elimination:
+    sound: "minecraft:entity.item.break"
+    volume: 1.0
+    pitch: 0.8
+  victory:
+    sound: "minecraft:ui.toast.challenge_complete"
+    volume: 1.0
+    pitch: 1.0
+  end:
+    sound: "minecraft:block.beacon.deactivate"
+    volume: 1.0
+    pitch: 1.0
+
+debug:
+  enabled: false
