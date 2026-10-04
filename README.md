@@ -186,6 +186,7 @@ joueurs en vie, le tour, le bloc, le temps et les vies (`❤❤♡`).
 | `block-selector.lobby-item` / `lobby-item-material` / `lobby-item-slot` | `true` / `NETHER_STAR` / 4 | Item de lobby |
 | `block-selector.materials` | 16 bétons | Liste blanche des blocs |
 | `turn-bossbar.enabled` / `color` / `overlay` | `false` / `YELLOW` / `PROGRESS` | BossBar du temps de tour |
+| `auto-join.enabled` / `arena` / `delay-ticks` | `false` / vide / 10 | Serveur dédié (derrière Velocity/BungeeCord) : rejoint l'arène indiquée, ou une arène libre si vide, à la connexion |
 | `scoreboard.enabled` / `server-name` | `true` / `play.example.com` | Scoreboard |
 | `protection.*` | | Commandes bloquées, distance max, téléportations externes |
 

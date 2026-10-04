@@ -56,6 +56,11 @@ public record Settings(
         ExternalTeleportMode externalTeleport,
         // messages
         String language,
+        // auto join (dedicated mini-game servers)
+        boolean autoJoin,
+        /* Arena joined on connection; empty = any joinable arena. */
+        String autoJoinArena,
+        int autoJoinDelayTicks,
         // debug
         boolean debug
 ) {

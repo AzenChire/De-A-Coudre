@@ -144,6 +144,9 @@ public final class ConfigManager {
                 Math.max(5, config.getInt("protection.max-distance", 40)),
                 externalTeleport,
                 config.getString("language", "en").toLowerCase(Locale.ROOT).trim(),
+                config.getBoolean("auto-join.enabled", false),
+                config.getString("auto-join.arena", "").trim(),
+                Math.clamp(config.getInt("auto-join.delay-ticks", 10), 1, 200),
                 config.getBoolean("debug.enabled", false));
 
         loadSounds(config.getConfigurationSection("sounds"));

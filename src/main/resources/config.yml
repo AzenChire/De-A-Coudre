@@ -185,5 +185,14 @@ sounds:
     volume: 1.0
     pitch: 1.0
 
+# For a server dedicated to the mini-game (e.g. behind a Velocity/BungeeCord proxy):
+# players join an arena automatically when they connect to this server.
+auto-join:
+  enabled: false
+  # Arena to join. Leave empty to join any available arena (like /dac join).
+  arena: ""
+  # Delay (ticks) after the connection before joining (1 to 200).
+  delay-ticks: 10
+
 debug:
   enabled: false
